@@ -1,6 +1,6 @@
 # LLM Project
 > Tashrif Mahmud
-:hugging_face: [Hugging Face Repo](https://huggingface.co/tashrifmahmud/sentiment_analysis_model_v2) | [Streamlit App](https://llm-project-lhl-tashrif.streamlit.app/)
+🤗: [Hugging Face Repo](https://huggingface.co/tashrifmahmud/sentiment_analysis_model_v2) | :bar_chart: [Streamlit App](https://llm-project-lhl-tashrif.streamlit.app/)
 
 ## Project Overview
 ### Sentiment Analysis Model
