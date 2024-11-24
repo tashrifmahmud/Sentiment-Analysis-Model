@@ -7,12 +7,12 @@ st.title(":bar_chart: Sentiment Analysis with Tashrif's LLM Model")
 st.markdown(":cat: [GitHub Repository](https://github.com/tashrifmahmud/LLM-Project) | :hugging_face: [Hugging Face Model](https://huggingface.co/tashrifmahmud/sentiment_analysis_model_v2)")
 
 # Banner
-st.image("https://exemplary.ai/img/blog/sentiment-analysis/sentiment-analysis.svg", use_column_width=True)
+st.image("https://www.qdegrees.com/uploads/blogs-img/sentiment-analysis-and-overview.jpg", use_column_width=True)
 
 # Sidebar for links
 with st.sidebar:
     st.header("More about this Project:")
-    st.markdown("### :space_invader: Craeted by: Tashrif Mahmud\n- This model is a finetuned DistilBERT transformer for binary sentiment analysis. Initially trained on the IMDB dataset and later tuned with Rotten Tomatoes dataset, it distinguishes positive and negative text based movie reviews.")
+    st.markdown("### :space_invader: Created by: Tashrif Mahmud\n- This model is a finetuned DistilBERT transformer for binary sentiment analysis. Initially trained on the IMDB dataset and later tuned with Rotten Tomatoes dataset, it distinguishes positive and negative text based movie reviews.")
     st.markdown("### :link: Links:\n- :cat: [GitHub](https://github.com/tashrifmahmud/LLM-Project)\n- :hugging_face: [Hugging Face](https://huggingface.co/tashrifmahmud/sentiment_analysis_model_v2)")
 
 # Check if GPU is available
