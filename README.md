@@ -35,15 +35,15 @@ We have conducted several preprocessing on our dataset before training our model
 
 For pre-trained models like [Distilbert](https://huggingface.co/distilbert/distilbert-base-uncased), used the model's tokenizer and padding methods.
 
-## Self-trained Model from scratch
-We built our own Sentiment Analysis model using tradional ML modules before using pre-trained models. 
+## Custom-Trained Models from Scratch
+We built our own Sentiment Analysis models using traditional machine learning techniques before experimenting with pre-trained models.
 
-We used 3 scikit-learn models:
+We evaluated three scikit-learn models:
 1. Logistic Regression
 2. Random Forest
 3. XGBoost
 
-### Self-trained Model Performance Metrics
+### Custom-Trained Model Performance Metrics
 
 | **Metric**                          | **Logistic Regression** | **Random Forest** | **XGBoost** |
 |---------------------------------|---------------------|---------------|---------|
@@ -59,7 +59,7 @@ We used 3 scikit-learn models:
 
 The Logistic Regression model achieved the highest validation accuracy of 80.56%, followed by XGBoost at 79.92% and Random Forest at 78.56%. All models performed similarly in terms of precision, recall, and F1-score, with slight variations between them. Logistic Regression showed the best overall performance, while XGBoost had the most balanced results across both classes.
 
-## Pre-trained Model
+## Pre-Trained Model
 We used [distilbert-base-uncased](https://huggingface.co/distilbert/distilbert-base-uncased) pre-trained model to train our text classification model. We used [IMDB](https://huggingface.co/datasets/stanfordnlp/imdb) dataset and preprocessed it with [distilbert's tokenizer](https://huggingface.co/distilbert/distilbert-base-uncased/blob/main/tokenizer.json) and [Data Collator](https://huggingface.co/docs/transformers/en/main_classes/data_collator) padding.
 
 **Evaluation Result 1:**
@@ -69,7 +69,7 @@ We used [distilbert-base-uncased](https://huggingface.co/distilbert/distilbert-b
 | 1     | 0.221500      | 0.207077        | 0.921280 |
 | 2     | 0.145500      | 0.236552        | 0.931040 |
 
-## Pre-trained Model Optimization
+## Pre-Trained Model Optimization
 We further optimized our intial [Sentiment Analysis](https://huggingface.co/tashrifmahmud/sentiment_analysis_model) by finetuning it with Transfer Learning method. We used [Rotten Tomatoes](https://huggingface.co/datasets/cornell-movie-review-data/rotten_tomatoes) dataset to train, by freezing the initial layers(except for the classification head) and fine-tune only the later layers. This helped us in retaining the knowledge learned from [IMDB](https://huggingface.co/datasets/stanfordnlp/imdb) and focuses the model on learning the specific features of [Rotten Tomatoes](https://huggingface.co/datasets/cornell-movie-review-data/rotten_tomatoes).
 
 > Final Model: [Model](https://huggingface.co/tashrifmahmud/sentiment_analysis_model_v2) | [App](https://llm-project-lhl-tashrif.streamlit.app/)
