@@ -1,6 +1,6 @@
 # LLM Project
 > Tashrif Mahmud
-🤗: [Hugging Face Repo](https://huggingface.co/tashrifmahmud/sentiment_analysis_model_v2) | :bar_chart: [Streamlit App](https://llm-project-lhl-tashrif.streamlit.app/)
+🤗: [Hugging Face Repo](https://huggingface.co/tashrifmahmud/sentiment_analysis_model_v2) | :bar_chart: [Streamlit App](https://llm-project-lhl-tashrif.streamlit.app/) | :film_strip: [YouTube Video](https://www.youtube.com/watch?v=a1PKN0u6dso)
 
 ## Project Overview
 ### Sentiment Analysis Model
@@ -129,5 +129,5 @@ The following hyperparameters were used during training:
 The model starts to overfit after after 2 epochs and best model is determined at epoch 1.0 (checkpoint-534). Hyperparameters can be tuned further to achieve better results but could not be done due to time and resource limitations.  
 
 ## Links
-:hugging_face: [Hugging Face](https://huggingface.co/tashrifmahmud/sentiment_analysis_model_v2) | [Streamlit App](https://llm-project-lhl-tashrif.streamlit.app/)
+🤗: [Hugging Face](https://huggingface.co/tashrifmahmud/sentiment_analysis_model_v2) | :bar_chart: [Streamlit App](https://llm-project-lhl-tashrif.streamlit.app/) | :film_strip: [YouTube Video](https://www.youtube.com/watch?v=a1PKN0u6dso)
 
