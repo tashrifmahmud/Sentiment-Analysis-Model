@@ -1,6 +1,6 @@
 # Large Language Model Project
 > Tashrif Mahmud
-🤗: [Hugging Face Repo](https://huggingface.co/tashrifmahmud/sentiment_analysis_model_v2) | :bar_chart: [Streamlit App](https://llm-project-lhl-tashrif.streamlit.app/) | :film_strip: [YouTube Video](https://www.youtube.com/watch?v=a1PKN0u6dso)
+🤗: [Hugging Face Repo](https://huggingface.co/tashrifmahmud/sentiment_analysis_model_v2) | :bar_chart: [Streamlit App](https://sentiment-analysis-llm.streamlit.app/) | :film_strip: [YouTube Video](https://www.youtube.com/watch?v=a1PKN0u6dso)
 
 ## Project Overview
 ### Sentiment Analysis Model
@@ -16,7 +16,7 @@ Our final optimized [model](https://huggingface.co/tashrifmahmud/sentiment_analy
 
 In [5-deployment](https://github.com/tashrifmahmud/Sentiment-Analysis-Model/blob/main/notebooks/5-deployment.ipynb) notebook we evaluate all 3 of our models against a finetuned text classification [model from HuggingFace](https://huggingface.co/distilbert/distilbert-base-uncased-finetuned-sst-2-english). 
 
-We also built a [Streamlit App](https://llm-project-lhl-tashrif.streamlit.app/) and details of it can be found in [app.py](https://github.com/tashrifmahmud/Sentiment-Analysis-Model/blob/main/app.py) script. 
+We also built a [Streamlit App](https://sentiment-analysis-llm.streamlit.app/) and details of it can be found in [app.py](https://github.com/tashrifmahmud/Sentiment-Analysis-Model/blob/main/app.py) script. 
 
 ## Dataset
 We primarily used [IMDB](https://huggingface.co/datasets/stanfordnlp/imdb) dataset to build our own Sentiment Analysis model as well as train and finetune our pretrained [Distilbert](https://huggingface.co/distilbert/distilbert-base-uncased) model.
@@ -72,7 +72,7 @@ We used [distilbert-base-uncased](https://huggingface.co/distilbert/distilbert-b
 ## Pre-Trained Model Optimization
 We further optimized our intial [Sentiment Analysis](https://huggingface.co/tashrifmahmud/sentiment_analysis_model) by finetuning it with Transfer Learning method. We used [Rotten Tomatoes](https://huggingface.co/datasets/cornell-movie-review-data/rotten_tomatoes) dataset to train, by freezing the initial layers(except for the classification head) and fine-tune only the later layers. This helped us in retaining the knowledge learned from [IMDB](https://huggingface.co/datasets/stanfordnlp/imdb) and focuses the model on learning the specific features of [Rotten Tomatoes](https://huggingface.co/datasets/cornell-movie-review-data/rotten_tomatoes).
 
-> Final Model: [Model](https://huggingface.co/tashrifmahmud/sentiment_analysis_model_v2) | [App](https://llm-project-lhl-tashrif.streamlit.app/)
+> Final Model: [Model](https://huggingface.co/tashrifmahmud/sentiment_analysis_model_v2) | [App](https://sentiment-analysis-llm.streamlit.app/)
 
 **Evaluation Result 2:**
 | Epoch | Training Loss | Validation Loss | Accuracy | Precision | Recall  | F1      |
@@ -129,7 +129,7 @@ The following hyperparameters were used during training:
 The model starts to overfit after after 2 epochs and best model is determined at epoch 1.0 (checkpoint-534). Hyperparameters can be tuned further to achieve better results but could not be done due to time and resource limitations.  
 
 ## Links
-🤗: [Hugging Face](https://huggingface.co/tashrifmahmud/sentiment_analysis_model_v2) | :bar_chart: [Streamlit App](https://llm-project-lhl-tashrif.streamlit.app/) | :film_strip: [YouTube Video](https://www.youtube.com/watch?v=a1PKN0u6dso)
+🤗: [Hugging Face](https://huggingface.co/tashrifmahmud/sentiment_analysis_model_v2) | :bar_chart: [Streamlit App](https://sentiment-analysis-llm.streamlit.app/) | :film_strip: [YouTube Video](https://www.youtube.com/watch?v=a1PKN0u6dso)
 
 > Tech Stack: Python | Pandas | NumPy | Matplotlib | Scikit-Learn | NLTK | Hugging Face Transformers | NLP (TF-IDF, Sentence Transformers) | Streamlit | Kaggle
 

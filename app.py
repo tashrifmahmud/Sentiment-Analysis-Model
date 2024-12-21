@@ -7,7 +7,7 @@ st.title(":bar_chart: Sentiment Analysis with LLM Model")
 st.markdown(":cat: [GitHub Repository](https://github.com/tashrifmahmud/Sentiment-Analysis-Model) | :hugging_face: [Hugging Face Model](https://huggingface.co/tashrifmahmud/sentiment_analysis_model_v2)")
 
 # Banner
-st.image("https://www.qdegrees.com/uploads/blogs-img/sentiment-analysis-and-overview.jpg", use_column_width=True)
+st.image("https://www.qdegrees.com/uploads/blogs-img/sentiment-analysis-and-overview.jpg", use_container_width=True)
 
 # Sidebar for links
 with st.sidebar:
@@ -22,8 +22,11 @@ device = 0 if torch.cuda.is_available() else -1
 st.write(f"Using {'GPU' if device == 0 else 'CPU'} for inference.")
 pipe = pipeline("text-classification", model="tashrifmahmud/sentiment_analysis_model_v2", device=device)
 
-# Input text box
-text_input = st.text_area("Enter text for sentiment analysis:")
+# Input text box with session state management
+if 'text_input' not in st.session_state:
+    st.session_state.text_input = ""
+
+text_input = st.text_area("Enter text for sentiment analysis:", value=st.session_state.text_input, key="text_input")
 
 # Buttons for user interaction
 run_button = st.button("Run Prediction")
@@ -46,7 +49,7 @@ if run_button:
 
         st.markdown(f"""
         <div style="background-color:{sentiment_color}; padding: 10px; border-radius: 5px; text-align: center;">
-            <h2 style="color: white;">Sentiment: {sentiment}</h2>
+            <h2 style="color: white;">Sentiment: {'Positive' if sentiment == 'LABEL_1' else 'Negative'}</h2>
             <h3 style="color: white;">Confidence: {confidence:.2f}</h3>
         </div>
         """, unsafe_allow_html=True)
@@ -57,4 +60,4 @@ if run_button:
         st.warning("Please enter some text before running the prediction.")
 
 if reset_button:
-    st.experimental_rerun()  # Resets the app by reloading it
+    st.session_state.text_input = ""  # Clear the text input
