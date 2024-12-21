@@ -131,3 +131,5 @@ The model starts to overfit after after 2 epochs and best model is determined at
 ## Links
 🤗: [Hugging Face](https://huggingface.co/tashrifmahmud/sentiment_analysis_model_v2) | :bar_chart: [Streamlit App](https://llm-project-lhl-tashrif.streamlit.app/) | :film_strip: [YouTube Video](https://www.youtube.com/watch?v=a1PKN0u6dso)
 
+> Tech Stack: Python | Pandas | NumPy | Matplotlib | Scikit-Learn | NLTK | Hugging Face Transformers | NLP (TF-IDF, Sentence Transformers) | Streamlit | Kaggle
+
