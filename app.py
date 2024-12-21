@@ -3,8 +3,8 @@ import torch
 from transformers import pipeline
 
 # Title
-st.title(":bar_chart: Sentiment Analysis with Tashrif's LLM Model")
-st.markdown(":cat: [GitHub Repository](https://github.com/tashrifmahmud/LLM-Project) | :hugging_face: [Hugging Face Model](https://huggingface.co/tashrifmahmud/sentiment_analysis_model_v2)")
+st.title(":bar_chart: Sentiment Analysis with LLM Model")
+st.markdown(":cat: [GitHub Repository](https://github.com/tashrifmahmud/Sentiment-Analysis-Model) | :hugging_face: [Hugging Face Model](https://huggingface.co/tashrifmahmud/sentiment_analysis_model_v2)")
 
 # Banner
 st.image("https://www.qdegrees.com/uploads/blogs-img/sentiment-analysis-and-overview.jpg", use_column_width=True)
@@ -13,7 +13,7 @@ st.image("https://www.qdegrees.com/uploads/blogs-img/sentiment-analysis-and-over
 with st.sidebar:
     st.header("More about this Project:")
     st.markdown("### :space_invader: Created by: Tashrif Mahmud\n- This model is a finetuned DistilBERT transformer for binary sentiment analysis. Initially trained on the IMDB dataset and later tuned with Rotten Tomatoes dataset, it distinguishes positive and negative text based movie reviews.")
-    st.markdown("### :link: Links:\n- :cat: [GitHub](https://github.com/tashrifmahmud/LLM-Project)\n- :hugging_face: [Hugging Face](https://huggingface.co/tashrifmahmud/sentiment_analysis_model_v2)")
+    st.markdown("### :link: Links:\n- :cat: [GitHub](https://github.com/tashrifmahmud/Sentiment-Analysis-Model)\n- :hugging_face: [Hugging Face](https://huggingface.co/tashrifmahmud/sentiment_analysis_model_v2)")
 
 # Check if GPU is available
 device = 0 if torch.cuda.is_available() else -1
@@ -39,7 +39,7 @@ if run_button:
         confidence = result[0]['score']
 
         # Display Sentiment and Confidence with background color for better visibility
-        if sentiment == 'LABEL_1':  # Assuming LABEL_1 represents positive sentiment
+        if sentiment == 'LABEL_1':  # LABEL_1 represents positive sentiment
             sentiment_color = "#2dbe3e"  # Green for positive
         else:
             sentiment_color = "#ff6f61"  # Red for negative
