@@ -23,9 +23,6 @@ with st.sidebar:
 # Check if GPU is available
 device = 0 if torch.cuda.is_available() else -1
 
-# Load environment variables
-load_dotenv()
-
 # Reddit API credentials, edited for stream lit
 client_id = st.secrets["REDDIT_CLIENT_ID"]
 client_secret = st.secrets["REDDIT_CLIENT_SECRET"]
