@@ -1,6 +1,5 @@
 import os
 import praw
-from dotenv import load_dotenv
 import streamlit as st
 from urllib.parse import urlparse, parse_qs
 import time
@@ -27,10 +26,10 @@ device = 0 if torch.cuda.is_available() else -1
 # Load environment variables
 load_dotenv()
 
-# Reddit API credentials
-client_id = os.getenv("REDDIT_CLIENT_ID")
-client_secret = os.getenv("REDDIT_CLIENT_SECRET")
-user_agent = os.getenv("REDDIT_USER_AGENT")
+# Reddit API credentials, edited for stream lit
+client_id = st.secrets["REDDIT_CLIENT_ID"]
+client_secret = st.secrets["REDDIT_CLIENT_SECRET"]
+user_agent = st.secrets["REDDIT_USER_AGENT"]
 
 # Initialize Reddit API
 reddit = praw.Reddit(
