@@ -2,14 +2,47 @@ import streamlit as st
 import torch
 from transformers import pipeline
 
-# Title
-st.title(":bar_chart: Sentiment Analysis with LLM")
-st.markdown("[GitHub Repository](https://github.com/tashrifmahmud/Sentiment-Analysis-Model) | [Hugging Face Model](https://huggingface.co/tashrifmahmud/sentiment_analysis_model_v2)")
+# Tab 
+st.set_page_config(
+    page_title="Sentiment Analysis Model", 
+    page_icon="https://i.imgur.com/vScON4I.png",  
+    layout="wide",  
+    initial_sidebar_state="expanded"  
+)
+
+# Header
+st.markdown(
+    """
+    <div style="
+        display: flex; 
+        align-items: center; 
+        justify-content: center; 
+        background-color: #f0f0f0; 
+        padding: 20px; 
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    ">
+        <img src="https://i.imgur.com/vScON4I.png" alt="Logo" style="width: 100px; height: auto; margin-right: 20px;">
+        <h1 style="margin: 0; font-size: 36px; color: #333;">Sentiment Analysis with LLM</h1>
+    </div>
+    """,
+    unsafe_allow_html=True
+)
+# Links
+st.markdown(
+    """
+    <div style="text-align: center;">
+        <a href="https://github.com/tashrifmahmud/Sentiment-Analysis-Model" target="_blank" style="margin-right: 20px;">GitHub Repository</a>
+        <a href="https://huggingface.co/tashrifmahmud/sentiment_analysis_model_v2" target="_blank">Hugging Face Model</a>
+    </div>
+    """,
+    unsafe_allow_html=True
+)
 
 # Banner
-st.image("https://www.qdegrees.com/uploads/blogs-img/sentiment-analysis-and-overview.jpg", use_container_width=True)
+st.image("https://i.imgur.com/1h8Pxfz.png", use_container_width=True)
 
-# Sidebar for links
+# Sidebar
 with st.sidebar:
     st.markdown("""
     <div style="display: flex; align-items: center; padding: 10px; background-color: #eef2f5; border-radius: 8px; border-left: 5px solid #007bff;">
@@ -34,37 +67,35 @@ pipe = pipeline("text-classification", model="tashrifmahmud/sentiment_analysis_m
 if 'text_input' not in st.session_state:
     st.session_state.text_input = ""
 
-# Function to handle reset button
+# Reset button
 def reset_input():
-    st.session_state.text_input = ""  # Clear the input via callback
+    st.session_state.text_input = "" 
 
 st.info("Enter text for sentiment analysis:", icon="⬇")
 
 # Input text box
 text_input = st.text_area("Text Box:", value=st.session_state.text_input, key="text_input")
 
-# Buttons for user interaction
+# Buttons
 run_button = st.button("Run Prediction")
-reset_button = st.button("Reset", on_click=reset_input)  # Attach callback to reset
+reset_button = st.button("Reset", on_click=reset_input) 
 
-# State management: Run prediction
+# Run prediction
 if run_button:
     if text_input.strip():
         result = pipe(text_input)
         
-        # Highlight the result with custom styling
         sentiment = result[0]['label']
         confidence = result[0]['score']
 
-        # Display Sentiment and Confidence with background color for better visibility
-        if sentiment == 'POSITIVE':  # Positive sentiment
-            sentiment_color = "#2dbe3e"  # Green for positive
+        if sentiment == 'POSITIVE': 
+            sentiment_color = "#2dbe3e"  
             sentiment_text = "😊 Positive"
-        elif sentiment == 'NEGATIVE':  # Negative sentiment
-            sentiment_color = "#ff6f61"  # Red for negative
+        elif sentiment == 'NEGATIVE':  
+            sentiment_color = "#ff6f61" 
             sentiment_text = "😡 Negative"
         else:
-            sentiment_color = "#d3d3d3"  # Grey for unknown (fallback)
+            sentiment_color = "#d3d3d3" 
             sentiment_text = "Unknown"
 
         st.markdown(f"""
@@ -74,7 +105,7 @@ if run_button:
         </div>
         """, unsafe_allow_html=True)
         
-        st.balloons()  # Fun animation
+        st.toast("Text analysis is done, scroll for results!", icon="✅") 
         st.success("Prediction complete!")
     else:
         st.warning("Please enter some text before running the prediction.", icon="⚠️")

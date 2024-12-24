@@ -6,15 +6,15 @@ from urllib.parse import urlparse, parse_qs
 import time
 import torch
 
-# Tab name and icon
+# Tab
 st.set_page_config(
     page_title="Reddit Sentiment Analysis", 
-    page_icon="https://static-00.iconduck.com/assets.00/reddit-fill-logo-icon-2048x2048-lhgwkdq9.png",  
+    page_icon="https://i.imgur.com/rBu7QgC.png",  
     layout="wide",  
     initial_sidebar_state="expanded"  
 )
 
-# Sidebar for links
+# Sidebar
 with st.sidebar:
     st.header("About Reddit Tool:")
     st.markdown("\n- This tool analyzes Reddit comments using the Reddit API to fetch up to 100 comments from a post. It uses a custom pre-trained NLP model, fine-tuned on movie reviews, to classify comments as positive or negative. \n- The results include a sentiment breakdown and an overall summary, making it ideal for analyzing trends and opinions in Reddit discussions.")
@@ -24,22 +24,22 @@ with st.sidebar:
 # Check if GPU is available
 device = 0 if torch.cuda.is_available() else -1
 
-# Load environment variables from .env file
+# Load environment variables
 load_dotenv()
 
-# Retrieve Reddit API credentials
+# Reddit API credentials
 client_id = os.getenv("REDDIT_CLIENT_ID")
 client_secret = os.getenv("REDDIT_CLIENT_SECRET")
 user_agent = os.getenv("REDDIT_USER_AGENT")
 
-# Initialize Reddit API connection
+# Initialize Reddit API
 reddit = praw.Reddit(
     client_id=client_id,
     client_secret=client_secret,
     user_agent=user_agent
 )
 
-# Streamlit interface
+# Header
 st.markdown(
     """
     <div style="
@@ -59,22 +59,23 @@ st.markdown(
 )
 
 
-st.info("Analyze the sentiment of comments from a specific Reddit post!", icon="🎞")
+st.info("Copy and paste the link from any [Reddit](https://www.reddit.com/) post and analyze the sentiment of user comments!", icon="🎞")
+
 # Load the sentiment analysis model
 st.success(f"Using {'GPU' if device == 0 else 'CPU'} for inference.", icon="✈")
-# Banner
-st.image("https://i.imgur.com/g1JMYYr.png", use_container_width=True)
 
-# Input field for Reddit post URL
+# Banner
+st.image("https://i.imgur.com/yoD2eRr.png", use_container_width=True)
+
+# Input field
 post_url = st.text_input("Enter Reddit post URL:")
 max_comments = st.number_input("Maximum number of comments to analyze (default: 50):", min_value=1, max_value=100, value=50, step=1)
 run_button = st.button("Fetch and Analyze")
 
-# Function to fetch comments from a Reddit post
+# Function to fetch comments
 def fetch_post_comments(url, max_comments):
     comments = []
     try:
-        # Extract the submission ID from the URL
         path_parts = urlparse(url).path.split("/")
         if "comments" in path_parts:
             submission_id = path_parts[path_parts.index("comments") + 1]
@@ -83,10 +84,9 @@ def fetch_post_comments(url, max_comments):
         
         submission = reddit.submission(id=submission_id)
         
-        # Fetch all comments up to the maximum specified
-        submission.comments.replace_more(limit=0)  # Flatten nested comments
+        submission.comments.replace_more(limit=0) 
         for comment in submission.comments.list():
-            if len(comment.body.strip()) > 20:  # Filter out short comments
+            if len(comment.body.strip()) > 20: 
                 comments.append(comment.body.strip())
                 if len(comments) >= max_comments:
                     break
@@ -95,11 +95,11 @@ def fetch_post_comments(url, max_comments):
         st.error(f"Error fetching comments: {e}")
         return []
 
-# Function to analyze sentiment using a sentiment analysis pipeline
+# Analyze sentiment
 def analyze_sentiment(comments):
     from transformers import pipeline
 
-    # Load the sentiment analysis model
+    # Load the model
     sentiment_model = pipeline("text-classification", model="tashrifmahmud/sentiment_analysis_model_v2", device=device)
 
     results = []
@@ -110,7 +110,7 @@ def analyze_sentiment(comments):
         results.append((comment, sentiment, confidence))
     return results
 
-# Function to determine overall sentiment
+# Determine overall sentiment
 def get_overall_sentiment(positive_count, negative_count):
     total = positive_count + negative_count
     if total == 0:
@@ -119,21 +119,21 @@ def get_overall_sentiment(positive_count, negative_count):
     positive_percentage = (positive_count / total) * 100
     negative_percentage = (negative_count / total) * 100
 
-    if positive_percentage > 75:
+    if positive_percentage > 90:
         return "Overwhelmingly Positive"
-    elif positive_percentage > 65:
+    elif positive_percentage > 80:
         return "Very Positive"
-    elif positive_percentage > 55:
+    elif positive_percentage > 70:
         return "Moderately Positive"
-    elif positive_percentage > 50:
+    elif positive_percentage > 60:
         return "Slightly Positive"
-    elif negative_percentage > 75:
+    elif negative_percentage > 90:
         return "Overwhelmingly Negative"
-    elif negative_percentage > 65:
+    elif negative_percentage > 80:
         return "Very Negative"
-    elif negative_percentage > 55:
+    elif negative_percentage > 70:
         return "Moderately Negative"
-    elif negative_percentage > 50:
+    elif negative_percentage > 60:
         return "Slightly Negative"
     else:
         return "Mixed Emotions"
@@ -150,7 +150,7 @@ if run_button and post_url:
         positive_count = 0
         negative_count = 0
 
-        # Count positive and negative comments
+        # Count positive and negative
         for _, sentiment, _ in results:
             if sentiment == "POSITIVE":
                 positive_count += 1
@@ -163,10 +163,9 @@ if run_button and post_url:
         positive_percentage = (positive_count / total) * 100 if total > 0 else 0
         negative_percentage = (negative_count / total) * 100 if total > 0 else 0
 
-        # Determine box color based on overall sentiment
         box_color = "#2ECC71" if positive_percentage > negative_percentage else "#E74C3C"
 
-        # Display summary on top with dynamic color
+        # Display summary
         st.markdown(f"""
         <div style="
             text-align: center; 
@@ -182,7 +181,10 @@ if run_button and post_url:
         </div>
         """, unsafe_allow_html=True)
 
-        # Display individual comment results in styled boxes
+        st.toast("Post analysis is done, scroll for results!", icon="✅") 
+        st.success("Prediction complete! Scroll down for individual comment scores.", icon="🔽")
+
+        # Display individual comment
         for comment, sentiment, confidence in results:
             truncated_comment = comment[:60] + '...' if len(comment) > 60 else comment
             color = "#2ECC71" if sentiment == "POSITIVE" else "#E74C3C"
@@ -202,6 +204,7 @@ if run_button and post_url:
                 <div style="flex: 1; text-align: right; font-size: 14px; color: #888;">Confidence: {confidence:.2f}</div>
             </div>
             """, unsafe_allow_html=True)
+
 
     else:
         st.warning("No comments fetched. Please check the post URL or try again.")
