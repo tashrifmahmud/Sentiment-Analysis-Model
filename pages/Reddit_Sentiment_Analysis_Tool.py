@@ -16,7 +16,7 @@ st.set_page_config(
 # Sidebar
 with st.sidebar:
     st.header("About Reddit Tool:")
-    st.markdown("\n- This tool analyzes Reddit comments using the Reddit API to fetch up to 100 comments from a post. It uses a custom pre-trained NLP model, fine-tuned on movie reviews, to classify comments as positive or negative. \n- The results include a sentiment breakdown and an overall summary, making it ideal for analyzing trends and opinions in Reddit discussions.")
+    st.markdown("\n- This tool analyzes Reddit comments using the Reddit API to fetch up to 100 comments from a post. It uses a custom pre-trained NLP model, fine-tuned on movie reviews, to classify comments as positive or negative. \n- The results include a sentiment breakdown and an overall summary, ideal for analyzing trends and opinions in movie reviews.")
     st.markdown("### :link: Links:\n- :cat: [GitHub](https://github.com/tashrifmahmud/Sentiment-Analysis-Model)\n- :hugging_face: [Hugging Face](https://huggingface.co/tashrifmahmud/sentiment_analysis_model_v2)")
     st.markdown(":space_invader: Created by: [Tashrif Mahmud](https://www.linkedin.com/in/tashrifmahmud)")
 
