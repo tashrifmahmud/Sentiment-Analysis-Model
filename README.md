@@ -28,7 +28,7 @@ Afterwards we used [Rotten Tomatoes](https://huggingface.co/datasets/cornell-mov
 We have conducted several preprocessing on our dataset before training our models. It can be seen in [1-preprocessing](https://github.com/tashrifmahmud/Sentiment-Analysis-Model/main/notebooks/1-preprocessing.ipynb) notebook. Some steps are continued in remaining notebooks.
 
 - Imported and accessed dataset alongside primary inspection, used pandas dataframe for easier cleaning
-- Cleaning Text: Removing punctuation, newline characters and trailing spaces + Lowercasing characters
+- Cleaning Text: Removing punctuation, newline characters and trailing spaces + lowercasing characters
 - Tokenization: Custom tokenization for own model, used tokenizer from huggingface for pre-trained models 
 - Stop Word Removal: Filter out unnecessary words using nltk stopwords english corpus for own model
 - Word2Vec: Used Word2Vec to generate embeddings for the cleaned tokens for own model
