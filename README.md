@@ -45,6 +45,7 @@ We evaluated three scikit-learn models:
 
 ### Custom-Trained Model Performance Metrics
 
+
 | **Metric**                          | **Logistic Regression** | **Random Forest** | **XGBoost** |
 |---------------------------------|---------------------|---------------|---------|
 | **Validation Accuracy**         | 0.8056             | 0.7856        | 0.7992  |
